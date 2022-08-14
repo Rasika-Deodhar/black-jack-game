@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "blackjackApp"
+    }
+  },
+  "defaultProject": "blackjackApp",
+  "cli": {
+    "analytics": "098238ba-eecb-4d87-9ea1-52f9b16fccc4"
+  }
 }
