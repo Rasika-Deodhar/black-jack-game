@@ -1,1 +1,12 @@
-<p>game works!</p>
+<p>{{cards | json}}</p>
+
+<button mat-raised-button color="primary" style="margin-left: 20px; margin-top:20px; float:left" (click)="start()">Start</button>
+<button mat-raised-button color="primary" style="margin-left: 80px; margin-top:20px;" (click)="reset()">Reset</button>
+
+<div *ngIf="startGame" style="display: flex;">
+    <div style="border: 1px solid; width:130px; height:100px; margin-left: 20px; margin-top:20px;">
+        Dealer
+        <button mat-raised-button color="primary"  (click)="openCards()">Open Cards</button>
+    </div>
+    <div style="border: 1px solid; width:130px; height:100px; margin-left: 80px; margin-top:20px;">Player</div>
+</div>

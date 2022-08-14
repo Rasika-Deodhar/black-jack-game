@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import playingCards from '../../assets/playingCards.json';
 
+interface card{
+  suit: any,
+  card:any 
+}
 
 @Component({
   selector: 'app-game',
@@ -31,6 +35,24 @@ export class GameComponent implements OnInit {
   totalHandValue=0;
   maxHandValue=21;
   minDealerHandValue=17;
+  startGame: boolean = false;
+  cards:card[] = playingCards;
+
+  start() {
+    this.startGame = true;
+  }
+
+  reset() {
+    this.startGame = false;
+  }
+
+  openCards() {
+    let min = Math.ceil(0);
+    let max = Math.floor(52);
+    let c = Math.floor(Math.random() * (max - min) + min);
+
+    //dealer.cardset.push(cards.get(c))
+  }
 
   hit(){
     // pick a card
@@ -46,6 +68,7 @@ export class GameComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
   }
 
 }
