@@ -29,7 +29,7 @@ This is a sample game application of <b>Black Jack</b>, also called as <b>21.</b
 <br>
  Planning to add more scenarios in future.
 
-<video src="src/assets/blackjack-video.webm" controls="controls" style="max-width: 730px;">
+<video src="src/assets/blackjack-video.mp4" controls="controls" style="max-width: 730px;">
 </video>
 
 
