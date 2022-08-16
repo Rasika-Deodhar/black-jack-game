@@ -1,15 +1,24 @@
 <button *ngIf="!_openCards" mat-raised-button color="primary" style="margin-left: 20px; margin-top:20px; float:left" (click)="start()">Start</button>
 <button *ngIf="_openCards" mat-raised-button disabled color="primary" style="margin-left: 20px; margin-top:20px; float:left">Start</button>
-<button mat-raised-button color="primary" style="margin-left: 80px; margin-top:20px;" (click)="reset()">Reset</button>
-<button mat-raised-button color="primary" style="margin-left: 140px; margin-top:20px;" (click)="hit()">Hit</button>
+<button *ngIf="_openCards" mat-raised-button color="primary" style="margin-left: 80px; margin-top:20px;" (click)="reset()">Reset</button>
+<button *ngIf="_openCards" mat-raised-button color="primary" style="margin-left: 140px; margin-top:20px;" (click)="hit()">Hit</button>
+<button *ngIf="_openCards" mat-raised-button color="primary" style="margin-left: 140px; margin-top:20px;" (click)="stand()">Stand</button>
+<button *ngIf="_openCards" mat-raised-button color="primary" style="margin-left: 140px; margin-top:20px;" (click)="double()">Double</button>
 
 <div *ngIf="startGame" style="display: flex;">
-    <div style="border: 1px solid; width:130px; height:100px; margin-left: 20px; margin-top:20px;">
+    <div style="border: 1px solid; width:130px; height:120px; margin-left: 20px; margin-top:20px;">
         Dealer
         <button *ngIf="!_openCards" mat-raised-button color="primary"  (click)="openCards()">Open Cards</button>
         <button *ngIf="_openCards" mat-raised-button disabled color="primary" >Open Cards</button>
     </div>
-    <div style="border: 1px solid; width:130px; height:100px; margin-left: 80px; margin-top:20px;">Player</div>
+    <div style="border: 1px solid; width:130px; height:120px; margin-left: 80px; margin-top:20px;">
+        Player
+            <input type="text" placeholder="Bet Value" [(ngModel)]="bet" style="width: 60px;">
+            <p>Bet Value: {{bet}}</p>
+          
+        <button *ngIf="!_betValue" mat-raised-button color="primary"  (click)="betValue(bet)">Bet value</button>
+        <button *ngIf="_betValue" mat-raised-button disabled color="primary" >Bet value</button>
+    </div>
 </div>
 
 <div *ngIf="startGame && dealer && player && dealer?.cardSet && player?.cardSet" style="display: flex;">
@@ -18,8 +27,11 @@
             <div *ngIf="card?.img!=dealerUpcard?.img">
                 <img  [src]="card?.img" style="width: 65px" />
             </div>
-            <div *ngIf="card?.img===dealerUpcard?.img">
+            <div *ngIf="card?.img===dealerUpcard?.img && !_openDealerUpcard">
                 <img  src="/assets/cardsImages/invisible.png" style="width: 65px" />
+            </div>
+            <div *ngIf="card?.img===dealerUpcard?.img && _openDealerUpcard">
+                <img  [src]="card?.img" style="width: 65px" />
             </div>
         </div>
     </div>
@@ -30,9 +42,18 @@
     </div>
 </div>
 
-{{player | json}}
-<div *ngIf="player && player?.totalHandValue" style="display: flex;">
-    <div style="margin-left: 245px; display: flex; width: 165px; margin-top:20px;">
-        Hand Value = {{player?.totalHandValue}}
+<div *ngIf="player && player?.totalHandValue && dealer && dealer?.totalHandValue" style="display: flex;">
+    <div *ngIf="_openDealerUpcard" style="display: flex;">
+        <div *ngIf="dealer && _openDealerUpcard" style="margin-left: 15px; width: 165px; margin-top:20px;">
+            Dealer Hand Value = {{dealer?.totalHandValue}}
+        </div>
+        <div style="margin-left: 60px; width: 165px; margin-top:20px;">
+            Player Hand Value = {{player?.totalHandValue}}
+        </div>
+    </div>
+    <div *ngIf="!_openDealerUpcard">
+        <div style="margin-left: 245px; display: flex; width: 165px; margin-top:20px;">
+            Player Hand Value = {{player?.totalHandValue}}
+        </div>
     </div>
 </div>
