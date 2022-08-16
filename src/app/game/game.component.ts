@@ -78,7 +78,7 @@ export class GameComponent implements OnInit {
 
   openCards() {
 
-    this.bet = isNaN(this.bet) ? 0 : this.bet;
+    this.bet = isNaN(this.bet) || this.bet==="" ? 0 : this.bet;
     this._openCards = true;
     this._betValue=true;
 
