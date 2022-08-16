@@ -35,3 +35,4 @@ This is a sample game application of <b>Black Jack</b>, also called as <b>21.</b
 
 
 
+[screen-capture.webm](https://user-images.githubusercontent.com/17561096/184997979-7472476f-790d-4165-8112-eb8b08d8ac2e.webm)
